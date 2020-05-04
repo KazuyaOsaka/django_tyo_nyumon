@@ -12,7 +12,9 @@ class HelloView(TemplateView):
             'title':'Hello',
             'message':'your data',
             'form':HelloForm(),
-            'result':None
+            'result':None,
+            'result2':None,
+            'result3':None
         }
 
     def get(self, request):
@@ -20,13 +22,25 @@ class HelloView(TemplateView):
 
     def post(self, request):
         msg = 'あたは、<b>' + request.POST['name'] + '(' + request.POST['age'] + ')' + '</b> さんです。<br>メールアドレスは<b>' + request.POST['mail'] + '</b>ですね。'
-        
+
         ch = request.POST['choice']
+
+        ra = request.POST['radio']
+
+        se = request.POST['select']
+
+        ms = request.POST.getlist('multiple_select')
+        result3 = '<ol><b>multiple_selected:</b>'
+        for item in ms:
+            result3 += '<li>' + item + '</li>'
+        result3 += '</ol>'
 
         self.params['message'] = msg
         self.params['form'] = HelloForm(request.POST)
         if ('check' in request.POST):
-            self.params['result'] = 'Checked!<br>' + '</br>selected:' + ch
+            self.params['result'] = 'Checked!'
         else:
-            self.params['result'] = 'not checked ...<br>' + '</br>selected:' + ch
+            self.params['result'] = 'not checked ...'
+        self.params['result2'] =  'selected:' + ch + '<br>radio:' + ra + '<br>select:' + se
+        self.params['result3'] =  'multiple_select:' + result3
         return render(request, 'hello/index.html', self.params)

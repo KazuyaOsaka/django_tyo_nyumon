@@ -11,6 +11,8 @@
     <h1>{{ title }}</h1>
     <p>{{ message|safe }}</p>
     <p>{{ result|safe }}</p>
+    <p>{{ result2|safe }}</p>
+    <p>{{ result3|safe }}</p>
     <table>
         <form action="{% url 'index' %}" method="post">
             {% csrf_token %}
