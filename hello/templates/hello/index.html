@@ -25,7 +25,8 @@
     2章の内容============== -->
 
     <!-- 3章の内容============== -->
-    <h1>{{ title }}</h1>
+    <!-- 3-15-------------- -->
+    <!-- <h1>{{ title }}</h1>
     <p>{{ message|safe }}</p>
     <table>
         <form action="{% url 'index' %}" method="POST">
@@ -59,8 +60,39 @@
             <td>{{ item.birthday }}</td>
         </tr>
         {% endfor %}
-    </table>
+    </table> -->
+
+    <!-- 3-16-------------- -->
+    <!-- <h1>{{ title }}</h1> -->
+    <!-- <p>{{ data }}</p> -->
+    <!-- <table> -->
+        <!-- <tr>
+            <th>data</th>
+        </tr>
+        {% for item in data %}
+        <tr>
+            <td>{{ item }}</td>
+        </tr>
+        {% endfor %} -->
+        <!-- {{ data|safe }} -->
+    <!-- </table> -->
     <!-- 3章の内容============== -->
+
+    <!-- 3-26------------------------ -->
+    <h1>{{ title }}</h1>
+    <table>
+        <tr>
+            <th>data</th>
+        </tr>
+
+        {% for item in data %}
+        <tr>
+            <td>{{ item }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'create' %}" role="button">createページ</a>
+    <!-- 3-26------------------------ -->
 
 </body>
 </html>

@@ -1,4 +1,5 @@
 from django import forms
+from .models import Friend
 
 # 2章の内容=====================================================
 # class HelloForm(forms.Form):
@@ -41,6 +42,24 @@ from django import forms
 
 
 # 3章の内容=====================================================
-class HelloForm(forms.Form):
-    id = forms.IntegerField(label='ID')
+# class HelloForm(forms.Form):
+#     id = forms.IntegerField(label='ID')
 # 3章の内容=====================================================
+
+
+# 3-24=====================================================
+class HelloForm(forms.Form):
+    name = forms.CharField(label='Name')
+    mail = forms.EmailField(label='Email')
+    gender = forms.BooleanField(label='Gender', required=False)
+    age = forms.IntegerField(label='Age')
+    birthday = forms.DateField(label='Birth')
+# 3-24=====================================================
+
+
+# 3-29=====================================================
+class FriendForm(forms.ModelForm):
+    class Meta:
+        model = Friend
+        fields = ['name', 'mail', 'gender', 'age', 'birthday']
+# 3-29=====================================================
