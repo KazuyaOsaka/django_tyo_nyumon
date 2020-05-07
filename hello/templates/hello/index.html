@@ -83,15 +83,19 @@
     <table>
         <tr>
             <th>data</th>
+            <th></th>
+            <th></th>
         </tr>
 
         {% for item in data %}
         <tr>
             <td>{{ item }}</td>
+            <td><a href="{% url 'edit' item.id %}">編集</a></td>
+            <td><a href="{% url 'delete' item.id %}">削除</a></td>
         </tr>
         {% endfor %}
     </table>
-    <a href="{% url 'create' %}" role="button">createページ</a>
+    <a href="{% url 'create' %}" role="button">追加</a>
     <!-- 3-26------------------------ -->
 
 </body>
