@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.views.generic import TemplateView
-from django.db.models import  QuerySet
-from .forms import HelloForm, FriendForm
+from django.db.models import  QuerySet, Q
+from .forms import HelloForm, FriendForm, FindForm
 from .models import Friend
 
 # Create your views here.
@@ -175,3 +175,27 @@ def delete(request, num):
             'obj':friend,
         }
     return render(request, 'hello/delete.html', params)
+
+
+def find(request):
+    if (request.method == 'POST'):
+        msg = 'search result:'
+        form = FindForm(request.POST)
+        str = request.POST['find']
+        # data = Friend.objects.filter(name__contains=str)
+        # val = str.split()
+        # data = Friend.objects.filter(age__gte=val[0], age__lte=val[1])
+        # data = Friend.objects.filter( Q(name__contains=str) | Q(mail__contains=str))
+        list = str.split()
+        data = Friend.objects.filter(name__in=list)
+    else:
+        msg = 'search words...'
+        form = FindForm()
+        data = Friend.objects.all()
+    params = {
+        'title':'Hello',
+        'message':msg,
+        'form':form,
+        'data':data,
+    }
+    return render(request, 'hello/find.html', params)

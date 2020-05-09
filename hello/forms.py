@@ -63,3 +63,9 @@ class FriendForm(forms.ModelForm):
         model = Friend
         fields = ['name', 'mail', 'gender', 'age', 'birthday']
 # 3-29=====================================================
+
+
+# 3-40=====================================================
+class FindForm(forms.Form):
+    find = forms.CharField(label='Find', required=False)
+# 3-40=====================================================
